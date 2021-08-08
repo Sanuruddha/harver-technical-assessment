@@ -4,7 +4,7 @@ This is a small node application written as part of a job application process
 
 ## Prerequisites
 
-you need yarn or npm package manager install on you computer
+You need yarn or npm package manager installed on you computer
 
 ## How to run
 

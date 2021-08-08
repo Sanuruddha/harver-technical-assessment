@@ -15,13 +15,20 @@ const {
   const image1Params = { width, height, color, size, phrase: greeting };
   const image2Params = { width, height, color, size, phrase: who };
 
-  const [err1, image1Body] = await to(catService.getCatWithPhrase({ ...image1Params }));
+  const promises = [
+    to(catService.getCatWithPhrase({ ...image1Params })),
+    to(catService.getCatWithPhrase({ ...image2Params }))
+  ];
+
+  const [image1res, image2res] = await Promise.all(promises);
+
+  const [err1, image1Body] = image1res;
   if (err1) {
     console.log(err1);
     return;
   }
 
-  const [err2, image2Body] = await to(catService.getCatWithPhrase({ ...image2Params }));
+  const [err2, image2Body] = image2res;
   if (err2) {
     console.log(err2);
     return;
